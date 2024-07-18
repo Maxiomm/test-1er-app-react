@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
-import Greeting from "./Greeting";
-import ToDoList from "./ToDoList";
-import UserList from "./UserList";
+import Greeting from "./components/Greeting";
+import ToDoList from "./components/ToDoList";
+import UserList from "./components/UserList";
 
 function App() {
   // Déclare une variable d'état pour le mode sombre
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("darkMode");
+    return savedTheme ? JSON.parse(savedTheme) : false;
+  });
 
   // Fonction pour basculer entre le mode sombre et le mode clair
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    setDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      localStorage.setItem("darkMode", JSON.stringify(newMode));
+      return newMode;
+    });
   };
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
 
   return (
     // Utilisation de React Router pour gérer les différentes pages de l'application

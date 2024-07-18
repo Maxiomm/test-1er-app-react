@@ -15,8 +15,11 @@ function Greeting() {
   return (
     <div>
       <h2>Bonjour, {name} !</h2>
+
       <p>Vous avez cliqué {count} fois</p>
+
       <button onClick={() => setCount(count + 1)}>Cliquez moi</button>
+
       <form onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Entrez votre nom"></input>
         <button type="submit">Mettre le nom à jour</button>

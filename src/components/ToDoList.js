@@ -36,6 +36,7 @@ function ToDoList() {
   return (
     <div>
       <h2>Liste de tâches</h2>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -45,6 +46,7 @@ function ToDoList() {
         ></input>
         <button type="submit">Ajouter</button>
       </form>
+
       <ul>
         {tasks.map((task, index) => (
           <li key={index}>
@@ -53,6 +55,7 @@ function ToDoList() {
           </li>
         ))}
       </ul>
+
       <ToastContainer></ToastContainer>
     </div>
   );
